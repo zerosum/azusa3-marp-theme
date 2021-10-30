@@ -8,3 +8,217 @@
  * @size 16:9 1280px 720px
  * @size 4:3 960px 720px
  */
+@use "sass:color";
+@use "../../node_modules/highlight.js/styles/base16/solarized-dark";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Noto+Sans+JP:400,700,800|Roboto+Mono:400,700&display=swap");
+
+$color-light: #fcfdf2;
+$color-dimmed-light: #eeeddc;
+$color-dimmed-dark: #393c41;
+$color-dark: #191a1c;
+$color-highlight: #5ae08e;
+
+$section-padding: 70px;
+
+@mixin color-scheme($bg, $text, $dimmed-bg, $dimmed-text) {
+    --color-background: #{$bg};
+    --color-background-dimmed: #{$dimmed-bg};
+    --color-foreground: #{$text};
+    --color-foreground-dimmed: #{$dimmed-text};
+}
+
+strong {
+    color: $color-highlight;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0.1em 0 0;
+
+    strong {
+        font-weight: inherit;
+    }
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.9em;
+}
+
+p,
+blockquote {
+    margin: 1em 0 0;
+}
+
+code {
+    display: inline-block;
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.8em;
+    letter-spacing: 0;
+    margin: -0.1em 0.15em;
+    padding: 0.1em 0.2em;
+    vertical-align: baseline;
+}
+
+pre {
+    display: block;
+    margin: 1em (-$section-padding) 0;
+    min-height: 1em;
+    overflow: visible;
+
+    code {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 100%;
+        padding: 1em $section-padding;
+        font-size: 0.7em;
+
+        svg[data-marp-fitting="svg"] {
+            max-height: calc(580px - 1em);
+        }
+    }
+}
+
+blockquote {
+    margin: 0.5em (-$section-padding);
+    padding: 1em (2 * $section-padding);
+    position: relative;
+    background-color: var(--color-background-dimmed);
+    font-style: italic;
+
+    &::after,
+    &::before {
+        content: "“";
+        display: block;
+        color: var(--color-foreground-dimmed);
+        font-size: 3em;
+        line-height: 1em;
+        font-weight: 800;
+        position: absolute;
+    }
+
+    &::before {
+        top: 35px;
+        left: 35px;
+    }
+
+    &::after {
+        right: 35px;
+        bottom: 35px;
+        transform: rotate(180deg);
+    }
+
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+mark {
+    background: transparent;
+}
+
+header,
+footer,
+section::after {
+    box-sizing: border-box;
+    font-size: 66%;
+    height: $section-padding;
+    line-height: 50px;
+    overflow: hidden;
+    padding: 10px 25px;
+    position: absolute;
+}
+
+header {
+    left: 0;
+    right: 0;
+    top: 0;
+    text-align: right;
+    padding-right: $section-padding;
+}
+
+footer {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: $section-padding;
+}
+
+section {
+    @include color-scheme($color-light, $color-dark, $color-dimmed-light, $color-dimmed-dark);
+
+    font-size: 35px;
+    font-family: "Montserrat", "Noto Sans JP", sans-serif;
+    height: 720px;
+    width: 1280px;
+    line-height: 1.35;
+    padding: $section-padding;
+    word-wrap: break-word;
+
+    a,
+    mark {
+        color: $color-highlight;
+    }
+
+    code {
+        background: var(--color-background-dimmed);
+        color: var(--color-foreground-dimmed);
+    }
+
+    &.title {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+
+        h1 {
+            font-weight: 800;
+            font-size: 2.4em;
+        }
+    }
+
+    &.section-header {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+
+    &.invert {
+        @include color-scheme($color-dark, $color-light, $color-dimmed-dark, $color-dimmed-light);
+    }
+}
