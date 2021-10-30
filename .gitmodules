@@ -1,0 +1,4 @@
+[submodule "marp-core"]
+	path = marp-core
+	url = https://github.com/marp-team/marp-core
+	ignore = dirty
