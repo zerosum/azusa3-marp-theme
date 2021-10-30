@@ -2,21 +2,8 @@
   "name": "azusa3-marp-theme",
   "description": "Azusa 3 theme for Marp",
   "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zerosum/azusa3-marp-theme.git"
-  },
-  "keywords": [
-    "marp",
-    "presentation",
-    "markdown"
-  ],
-  "author": "zerosum",
+  "author": "zerosum/TAKAHASHI Osamu",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zerosum/azusa3-marp-theme/issues"
-  },
-  "homepage": "https://github.com/zerosum/azusa3-marp-theme#readme",
   "devDependencies": {
     "highlight.js": "^11.3.1",
     "rimraf": "^3.0.2",
