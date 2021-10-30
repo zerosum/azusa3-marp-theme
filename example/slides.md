@@ -1,12 +1,15 @@
 ---
 marp: true
 theme: azusa3
-_class:
- - title
- - invert
 paginate: true
 footer: 'maintained by @zerosum_'
 ---
+
+<!--
+_class:
+  - title
+  - invert
+-->
 
 # "Azusa 3" for Marp
 

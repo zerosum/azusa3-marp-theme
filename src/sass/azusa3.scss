@@ -170,6 +170,9 @@ footer {
 section {
     @include color-scheme($color-light, $color-dark, $color-dimmed-light, $color-dimmed-dark);
 
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+
     font-size: 35px;
     font-family: "Montserrat", "Noto Sans JP", sans-serif;
     height: 720px;
