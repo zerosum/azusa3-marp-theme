@@ -12,6 +12,6 @@
   "scripts": {
     "clean": "rimraf build",
     "watch": "sass --watch src/sass:build/css",
-    "build": "sass src/sass:build/css"
+    "build": "sass --no-source-map src/sass:build/css"
   }
 }
