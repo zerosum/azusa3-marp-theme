@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -36,6 +37,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/azusa3.css
+          asset_path: ./build/css/azusa3.css
           asset_name: azusa3.css
           asset_content_type: text/css
