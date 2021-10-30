@@ -10,6 +10,7 @@
  */
 @use "sass:color";
 @use "../../node_modules/highlight.js/styles/base16/solarized-dark";
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Noto+Sans+JP:400,700,800|Roboto+Mono:400,700&display=swap");
 
 $color-light: #fcfdf2;
@@ -21,10 +22,33 @@ $color-highlight: #5ae08e;
 $section-padding: 70px;
 
 @mixin color-scheme($bg, $text, $dimmed-bg, $dimmed-text) {
-    --color-background: #{$bg};
-    --color-background-dimmed: #{$dimmed-bg};
-    --color-foreground: #{$text};
-    --color-foreground-dimmed: #{$dimmed-text};
+    background: $bg;
+    color: $text;
+
+    blockquote {
+        background-color: $dimmed-bg;
+        &::after,
+        &::before {
+            color: $dimmed-text;
+        }
+    }
+
+    code {
+        background: $dimmed-bg;
+        color: $dimmed-text;
+    }
+}
+
+:root {
+    @include color-scheme($color-light, $color-dark, $color-dimmed-light, $color-dimmed-dark);
+}
+
+:root.invert {
+    @include color-scheme($color-dark, $color-light, $color-dimmed-dark, $color-dimmed-light);
+}
+
+svg[data-marp-fitting="svg"] {
+    max-height: 580px; // Slide height - padding * 2
 }
 
 strong {
@@ -106,14 +130,12 @@ blockquote {
     margin: 0.5em (-$section-padding);
     padding: 1em (2 * $section-padding);
     position: relative;
-    background-color: var(--color-background-dimmed);
     font-style: italic;
 
     &::after,
     &::before {
         content: "“";
         display: block;
-        color: var(--color-foreground-dimmed);
         font-size: 3em;
         line-height: 1em;
         font-weight: 800;
@@ -168,11 +190,6 @@ footer {
 }
 
 section {
-    @include color-scheme($color-light, $color-dark, $color-dimmed-light, $color-dimmed-dark);
-
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-
     font-size: 35px;
     font-family: "Montserrat", "Noto Sans JP", sans-serif;
     height: 720px;
@@ -184,11 +201,6 @@ section {
     a,
     mark {
         color: $color-highlight;
-    }
-
-    code {
-        background: var(--color-background-dimmed);
-        color: var(--color-foreground-dimmed);
     }
 
     &.title {
@@ -219,9 +231,5 @@ section {
         p {
             text-align: center;
         }
-    }
-
-    &.invert {
-        @include color-scheme($color-dark, $color-light, $color-dimmed-dark, $color-dimmed-light);
     }
 }
